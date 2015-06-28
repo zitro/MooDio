@@ -122,6 +122,7 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func reverbButton(sender: UIButton) {
         audioPlayer.stop()
         audioPlayer.currentTime = 0.0
+        audioPlayer2.stop()
         audioEngine.stop()
         audioEngine.reset()
         playAudioWithReverb(100)
