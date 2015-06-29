@@ -22,16 +22,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     var recordedAudio:RecordedAudio!
     var continueRecord: Bool = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         continueRecord = false
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,7 +43,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         pauseButton.hidden = false
         pauseText.hidden = false
     
-        
         if(!continueRecord){
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -74,7 +66,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
         audioRecorder.record()
         
-        
     }
 
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
@@ -83,13 +74,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordedAudio = RecordedAudio(filePathURL: recorder.url, title:recorder.url.lastPathComponent!)
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         }else{
-            println("Recording was not successful")
             recordButton.enabled = true
             stopButton.hidden = true
             mictext.hidden = false
         }
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "stopRecording"){
@@ -114,15 +103,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
        
         }
     
-    
-    
     @IBAction func stopAudio(sender: UIButton) {
         
         recordingInProgress.hidden = true
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
-    
-    
+
     }
 }
